@@ -8,6 +8,7 @@ const foods = [
     name: "Bun cha",
     price: 30000,
     owner: "Tran Duc Trung",
+    src: "https://dammenaunuong.com/wp-content/uploads/2019/10/2584396bb4ced2c262a744c2af56e243-cach-lam-nem-ran-sl.jpg",
   },
   {
     id: 2,
@@ -36,22 +37,52 @@ const foods = [
 ];
 
 function Menu() {
+  const [inputValue, setInputValue] = useState("");
+  const [foodList, setFoodList] = useState(foods);
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleSearchFood = () => {
+    let filterFood = foods.filter((food) =>
+      food.name.toLowerCase().includes(inputValue)
+    );
+    setFoodList(filterFood);
+  };
+
+  console.log("------", inputValue);
+
   return (
     <div className="Menu">
-      {/* <Food foodName="Bun cha" foodPrice={30000} foodOwner="Tran Trong Duc"/>
-      <Food foodName="Bun bo"  />
-      <Food foodName="pho bo" />
-      <Food foodName="Bun real" />
-      <Food foodName="Bun fake" /> */}
+      <div className="Menu-search">
+        <div>Nhap ten mon</div>
+        <input type="text" value={inputValue} onChange={handleInputChange} />
+        <button type="button" onClick={handleSearchFood}>
+          Search
+        </button>
+      </div>
 
-      {foods.map((food) => {
-        const { id, name, price, owner, local } = food;
-        return (
-          <Food key={id} foodName={name} foodPrice={price} foodOwner={owner} />
-        );
-      })}
+      <div className="Menu-list">
+        {foodList.map((food) => {
+          const { id, name, price, owner, src } = food;
+          return (
+            <Food
+              key={id}
+              foodName={name}
+              foodPrice={price}
+              foodOwner={owner}
+              imgSource={src}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
 
 export default Menu;
+
+// React hooks: useState, useEffect
+// component render: life cycle...
+// css

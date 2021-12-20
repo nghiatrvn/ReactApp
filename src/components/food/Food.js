@@ -6,10 +6,11 @@ import "./Food.scss";
 //     owner: '',
 // } // cau truc cua props 
 
-function Food({ foodName, foodPrice, foodOwner }) {
+function Food({ foodName, foodPrice, foodOwner, imgSource }) {
   return (
     <>
       <div className="Food">
+        <img src={imgSource} alt="anh mon an"/>
         <div className="Food__name">{foodName}</div>
         <div className="Food__price">{foodPrice} VND</div>
 
@@ -21,4 +22,6 @@ function Food({ foodName, foodPrice, foodOwner }) {
 
 export default Food;
 
+
+//img
 // cac ham cua array: foreach, map, filter, find, reduce
